@@ -1,12 +1,31 @@
-import React, { PureComponent } from "react";
-import { Text, View } from "react-native";
+import React from "react";
+import {
+  Text,
+  View,
+  StyleSheet,
+  Image,
+  Button,
+  ScrollView,
+} from "react-native";
+import { useSelector } from "react-redux";
 
-export default class ProductDetailScreen extends PureComponent {
-  render() {
-    return (
-      <View>
-        <Text> textInComponent </Text>
-      </View>
-    );
-  }
-}
+const ProductDetailScreen = (props) => {
+  const productId = props.navigation.getParam("productId");
+  const selectedProduct = useSelector((state) =>
+    state.products.availableProducts.find((prod) => prod.id === productId)
+  );
+
+  return (
+    <View>
+      <Text> {selectedProduct.title} </Text>
+    </View>
+  );
+};
+
+ProductDetailScreen.navigationOptions = (navData) => {
+  return {
+    headerTitle: navData.navigation.getParam("productTitle"),
+  };
+};
+
+export default ProductDetailScreen;
