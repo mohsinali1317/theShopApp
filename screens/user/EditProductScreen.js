@@ -2,11 +2,8 @@ import React, { useEffect, useCallback, useReducer } from "react";
 import {
   StyleSheet,
   ScrollView,
-  Text,
-  TextInput,
   View,
   Platform,
-  Alert,
   KeyboardAvoidingView,
 } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
@@ -29,6 +26,7 @@ const formReducer = (state, action) => {
       ...state.inputValidities,
       [action.input]: action.isValid,
     };
+
     let formIsValid = true;
     for (const key in updatedValidities) {
       formIsValid = formIsValid && updatedValidities[key];

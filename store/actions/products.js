@@ -10,14 +10,39 @@ export const deleteProduct = (productId) => {
 };
 
 export const createProduct = (title, description, imageUrl, price) => {
-  return {
-    type: CREATE_PRODUCT,
-    productData: {
-      title: title,
-      description: description,
-      imageUrl: imageUrl,
-      price: price,
-    },
+  return async (dispatch) => {
+    // any async code
+
+    console.log(1);
+
+    const response = await fetch(
+      "https://rn-complete-guide-39ec3-default-rtdb.firebaseio.com/products.json",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          title,
+          description,
+          imageUrl,
+          price,
+        }),
+      }
+    );
+
+    const resData = await response.json();
+
+    dispatch({
+      type: CREATE_PRODUCT,
+      productData: {
+        id: resData.name,
+        title: title,
+        description: description,
+        imageUrl: imageUrl,
+        price: price,
+      },
+    });
   };
 };
 
