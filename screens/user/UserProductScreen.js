@@ -17,19 +17,20 @@ const UserProductScreen = (props) => {
   };
 
   const deleteHandler = (id) => {
-    Alert.alert("Are you sure?", "Do you really want to delete this item", [
-      {
-        text: "NO",
-        style: "default",
-      },
-      {
-        text: "YES",
-        style: "destructive",
-        onPress: () => {
-          dispatch(productsActions.deleteProduct(id));
-        },
-      },
-    ]);
+    dispatch(productsActions.deleteProduct(id));
+    // Alert.alert("Are you sure?", "Do you really want to delete this item", [
+    //   {
+    //     text: "NO",
+    //     style: "default",
+    //   },
+    //   {
+    //     text: "YES",
+    //     style: "destructive",
+    //     onPress: () => {
+    //       dispatch(productsActions.deleteProduct(id));
+    //     },
+    //   },
+    // ]);
   };
 
   return (
